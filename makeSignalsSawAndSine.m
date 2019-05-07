@@ -1,8 +1,9 @@
 %%  Make artifcial signals (sinus vs saw-tooth)
 
-n=2000; % number of samples
+n=5000; % number of samples
 m=100; % signal length
 
+snr=5;
 
 w=rand(n,1)*2*pi/10; % Angular velocity 
 o=rand(n,1)*pi*2; % Phase
@@ -13,6 +14,13 @@ sa=sawtooth(w*[1:m] +o);
 si=sin(w*[1:m] +o);
 
 sig=[sa; si];
+
+% add noise
+s=sqrt(mean(var(sig')'));
+if snr<inf
+    sig=sig+s*randn(size(sig))/snr;
+    
+end
 
 type=[repmat(categorical({'Saw'}),n,1) ; repmat(categorical({'Sin'}),n,1)];
 w=[w ; w];
