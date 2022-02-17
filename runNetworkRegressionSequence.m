@@ -3,7 +3,7 @@
 
 
 % load network  
-load SinRegressNet.mat
+load SawSineRegressNet.mat
 
 % use deepNetworkDesigner to analyse network
 
